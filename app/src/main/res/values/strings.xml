@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">ApexBox</string>
+
+    <!--  HelpPage  -->
+    <string name="welcome">Welcome!</string>
+    <string name="help_content1">Thank you for using ApexBox. Before we start, please follow the instructions:</string>
+    <string name="help_content2">1. Visit API website and apply for an API key.</string>
+    <string name="help_content3">2. Fill in the blanks with your API key.</string>
+    <string name="help_content4">3. Or you can skip and just use default public API key with usage limits.</string>
+    <string name="api_site">https:\/\/portal.apexlegendsapi.com\/</string>
+    <string name="open_policy">See our open source policy.</string>
+    <string name="btn_agree">Continue</string>
+    <string name="api_not_filled">You haven\'t fill in your api key yet!</string>
+    <string name="textfield_label">API Key</string>
+
+    <!--  HomePage  -->
+    <string name="home_bar_title">Apex Box</string>
+    <string name="item_home">Home</string>
+    <string name="item_news">News</string>
+    <string name="item_settings">Settings</string>
+    <string name="map_rotation">Map Rotation</string>
+    <string name="map_desc">look up for map rotations</string>
+    <string name="craft_list">Craft List</string>
+    <string name="craft_desc">look up for everyday crafts</string>
+    <string name="player_info">Player Info</string>
+    <string name="player_desc">statistics of specific player</string>
+
+    <!--  MapRotationPage  -->
+    <string name="map_bar_title">Map Rotation</string>
+    <string name="battle_royale">Battle Royale</string>
+    <string name="br_Arena">BR Ranked</string>
+    <string name="mix_tape">Mix Tapes</string>
+    <string name="remaining_time">remaining time:</string>
+    <string name="current">current</string>
+    <string name="next">next</string>
+    <string name="from">from: </string>
+    <string name="to">to: </string>
+    <string name="not_started">not started yet</string>
+    <string name="toast_refreshed">Get latest rotations successfully.</string>
+    <string name="toast_lost_internet">Failed. Please check your Internet connectivity!</string>
+    <string name="toast_error">Error. Unexpected response.</string>
+    <string name="toast_other">Error. Other reasons.</string>
+
+</resources>
