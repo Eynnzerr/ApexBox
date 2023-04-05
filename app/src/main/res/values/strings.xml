@@ -40,5 +40,23 @@
     <string name="toast_lost_internet">Failed. Please check your Internet connectivity!</string>
     <string name="toast_error">Error. Unexpected response.</string>
     <string name="toast_other">Error. Other reasons.</string>
+    <string name="toast_subscription">Update map subscription successfully.</string>
+    <string name="map_dialog_title">Map Subscription</string>
+    <string name="map_dialog_confirm">confirm</string>
+    <string name="subscription_desc">Only BR mode is supported for now.</string>
+    <string name="subscription_manage">Manage map subscriptions</string>
+
+    <!--  SettingPage  -->
+    <string name="setting_bar_title">Settings</string>
+    <string name="item_api_key">API Key</string>
+    <string name="item_api_key_desc">manage your API keys</string>
+    <string name="item_player_subscribed">Player Subscription</string>
+    <string name="item_player_subscribed_desc">see and manage subscribed players</string>
+    <string name="item_appearance">Appearance</string>
+    <string name="item_appearance_desc">app theme, colors, palette</string>
+    <string name="item_languages">Languages</string>
+    <string name="item_languages_desc">English, Chinese, etc.</string>
+    <string name="item_about">About</string>
+    <string name="item_about_desc">author, open source</string>
 
 </resources>

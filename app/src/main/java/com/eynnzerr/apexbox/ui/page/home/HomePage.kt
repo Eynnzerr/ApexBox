@@ -25,10 +25,7 @@ import com.eynnzerr.apexbox.ui.page.GlobalViewModel
 @Composable
 fun HomePage(
     navHostController: NavHostController,
-    globalViewModel: GlobalViewModel
 ) {
-    val navigationIndex by globalViewModel.navigationIndexState.collectAsState()
-
     ApexScaffold(
         title = { Text(text = stringResource(id = R.string.home_bar_title)) },
         navigationIcon = {
@@ -43,7 +40,7 @@ fun HomePage(
         },
         actions = {
             IconButton(onClick = {
-                navHostController.popupTo(Destinations.HELP_ROUTE)
+                navHostController.pushTo(Destinations.HELP_ROUTE)
             }) {
                 Icon(
                     imageVector = Icons.Outlined.HelpOutline,
@@ -52,10 +49,7 @@ fun HomePage(
             }
         },
         bottomBar = {
-            ApexNavigationBar(selectedIndex = navigationIndex) {
-                // change navigation index and navigate to corresponding page.
-                globalViewModel.updateNavigationIndex(it.index)
-            }
+            ApexNavigationBar(navHostController)
         },
         content = {
             LazyColumn {

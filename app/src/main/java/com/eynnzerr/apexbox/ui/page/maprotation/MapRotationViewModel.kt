@@ -14,6 +14,8 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 import com.eynnzerr.apexbox.R
+import com.eynnzerr.apexbox.data.preference.MMKVAgent
+import com.eynnzerr.apexbox.data.preference.PreferenceKeys
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
@@ -23,19 +25,46 @@ data class MapUiState(
     val success: Int = -3,
     val commonCountDownTime: String = "00:00:00",
     val rankCountDownTime: String = "00:00:00",
-    val mixTapeCountDownTime: String = "00:00:00"
+    val mixTapeCountDownTime: String = "00:00:00",
+    val openSubscriptionDialog: Boolean = false,
+    val mapSelections: MutableList<Boolean> = mutableListOf()
 )
 
 @HiltViewModel
 class MapRotationViewModel @Inject constructor(
     private val repository: AppRepository
 ): ViewModel() {
-    private val _mapUiState = MutableStateFlow(MapUiState())
+    private val _mapUiState = MutableStateFlow(MapUiState(mapSelections = loadMapSubscriptions()))
     val mapUiState = _mapUiState.asStateFlow()
 
     init {
         fetchMapRotation()
     }
+
+    fun updateMapSubscriptions(index: Int, selected: Boolean) {
+        _mapUiState.value.mapSelections[index] = selected
+        var subscriptionNumber = MMKVAgent.decodeInt(PreferenceKeys.MAP_SUBSCRIPTION, 0)
+        val bit = 1 shl index
+        if (selected) {
+            subscriptionNumber = subscriptionNumber or bit
+        } else {
+            subscriptionNumber = subscriptionNumber and bit.inv()
+        }
+        MMKVAgent.encodeInt(PreferenceKeys.MAP_SUBSCRIPTION, subscriptionNumber)
+    }
+
+    private fun loadMapSubscriptions(): MutableList<Boolean> {
+        val subscriptionNumber = MMKVAgent.decodeInt(PreferenceKeys.MAP_SUBSCRIPTION, 0)
+        val mapSelections = mutableListOf<Boolean>()
+        var bit = 1
+        repeat(5) {
+            mapSelections.add(subscriptionNumber and bit != 0)
+            bit = bit shl 1
+        }
+        return mapSelections
+    }
+
+    fun updateDialogState() = _mapUiState.update { it.copy(openSubscriptionDialog = !it.openSubscriptionDialog) }
 
     fun fetchMapRotation() = updateMapRotation { mapRotation ->
         _mapUiState.update { it.copy(mapRotation = mapRotation, success = 0) }

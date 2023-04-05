@@ -73,8 +73,12 @@ val retrofitVersion = "2.9.0"
 val MMKVVersion = "1.2.13"
 val materialVersion = "1.7.0-alpha02"
 val coilVersion = "2.3.0"
+val workVersion = "2.8.0"
+val hiltWorkVersion = "1.0.0"
 
 dependencies {
+    implementation("androidx.hilt:hilt-work:$hiltWorkVersion")
+    implementation("androidx.work:work-runtime-ktx:$workVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
     implementation("com.google.android.material:material:$materialVersion")
     implementation("com.tencent:mmkv:$MMKVVersion")
@@ -107,6 +111,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
     debugImplementation("com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion")
 
+    kapt("androidx.hilt:hilt-compiler:$hiltWorkVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
 }

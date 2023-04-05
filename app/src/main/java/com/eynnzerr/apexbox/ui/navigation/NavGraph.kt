@@ -13,6 +13,7 @@ import com.eynnzerr.apexbox.ui.page.help.HelpPage
 import com.eynnzerr.apexbox.ui.page.home.HomePage
 import com.eynnzerr.apexbox.ui.page.maprotation.MapRotationPage
 import com.eynnzerr.apexbox.ui.page.maprotation.MapRotationViewModel
+import com.eynnzerr.apexbox.ui.page.settings.SettingsPage
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -23,8 +24,6 @@ fun NavGraph(
     navHostController: NavHostController = rememberAnimatedNavController(),
     startDestination: String = Destinations.HELP_ROUTE
 ) {
-    val globalViewModel = hiltViewModel<GlobalViewModel>()
-
     AnimatedNavHost(
         modifier = Modifier.background(MaterialTheme.colorScheme.surface),
         navController = navHostController,
@@ -34,7 +33,7 @@ fun NavGraph(
             HelpPage(navHostController)
         }
         animatedComposable(Destinations.HOME_ROUTE) {
-            HomePage(navHostController, globalViewModel)
+            HomePage(navHostController)
         }
         animatedComposable(Destinations.MAP_ROUTE) {
             val viewModel = hiltViewModel<MapRotationViewModel>()
@@ -50,7 +49,7 @@ fun NavGraph(
             // TODO
         }
         animatedComposable(Destinations.SETTINGS_ROUTE) {
-            // TODO
+            SettingsPage(navHostController)
         }
     }
 }

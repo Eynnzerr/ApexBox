@@ -1,5 +1,6 @@
 package com.eynnzerr.apexbox.ui.page.maprotation
 
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,27 +8,26 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Circle
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.util.lerp
 import androidx.navigation.NavHostController
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.eynnzerr.apexbox.R
 import com.eynnzerr.apexbox.ui.component.*
-import com.eynnzerr.apexbox.ui.ext.popupTo
-import com.eynnzerr.apexbox.ui.navigation.Destinations
-import com.eynnzerr.apexbox.ui.page.GlobalViewModel
-import kotlinx.coroutines.launch
+import com.eynnzerr.apexbox.ui.ext.mapNames
+import com.eynnzerr.apexbox.worker.SubscriptionWorker
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -39,9 +39,47 @@ fun MapRotationPage(
     val context = LocalContext.current
     val uiState by mapRotationViewModel.mapUiState.collectAsState()
 
-//    LaunchedEffect(true) {
-//        mapRotationViewModel.fetchMapRotation()
-//    }
+    ApexDialog(
+        visible = uiState.openSubscriptionDialog,
+        onDismissRequest = { mapRotationViewModel.updateDialogState() },
+        icon = { Icon(imageVector = Icons.Outlined.Loyalty, contentDescription = "") },
+        title = { Text(text = stringResource(id = R.string.map_dialog_title)) },
+        text = {
+            SubscriptionDialogContent(
+                mapSelection = uiState.mapSelections,
+                onMapSelected = { index, selected ->
+                    // TODO 每次点都要访问MMKV编解码，造成一定延迟
+                    mapRotationViewModel.updateMapSubscriptions(index, selected)
+                }
+            )
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    mapRotationViewModel.updateDialogState()
+                    Toast.makeText(context, context.resources.getText(R.string.toast_subscription), Toast.LENGTH_SHORT).show()
+
+                    WorkManager.getInstance(context).apply {
+                        cancelAllWork()
+                        val subscribedMaps = uiState.mapSelections
+                            .mapIndexed { index, selected -> if (selected) mapNames[index] else null }
+                            .filterNotNull()
+                            .toTypedArray()
+                        val data = Data.Builder()
+                            .putStringArray("subscribed_maps", subscribedMaps)
+                            .build()
+                        enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
+                            .setInputData(data)
+                            .build()
+                        )
+                    }
+                }
+            ) {
+                Text(text = stringResource(id = R.string.map_dialog_confirm))
+            }
+        }
+    )
+
     ApexScaffold(
         title = { Text(text = stringResource(id = R.string.map_bar_title)) },
         navigationIcon = {
@@ -64,7 +102,7 @@ fun MapRotationPage(
                 )
             }
             IconButton(onClick = {
-                // TODO 打开订阅对话框
+                mapRotationViewModel.updateDialogState()
             }) {
                 Icon(
                     imageVector = Icons.Outlined.BookmarkAdd,
@@ -80,7 +118,7 @@ fun MapRotationPage(
             ) {
                 item {
                     val pagerState = rememberPagerState()
-                    val scope = rememberCoroutineScope()
+                    // val scope = rememberCoroutineScope()
                     Column {
                         TitleText(
                             modifier = Modifier.padding(start = 10.dp),
@@ -134,16 +172,16 @@ fun MapRotationPage(
                                     },
                                     mapName = maps.current.map,
                                     modeName = "BR",
-                                    startTime = maps.current.readableDate_start,
-                                    endTime = maps.current.readableDate_end,
+                                    startTime = adjustDate(maps.current.readableDate_start),
+                                    endTime = adjustDate(maps.current.readableDate_end),
                                     remainingTime = uiState.commonCountDownTime
                                 )
                             } else {
                                 MapCard(
                                     mapName = maps.next.map,
                                     modeName = "BR",
-                                    startTime = maps.next.readableDate_start,
-                                    endTime = maps.next.readableDate_end,
+                                    startTime = adjustDate(maps.next.readableDate_start),
+                                    endTime = adjustDate(maps.next.readableDate_end),
                                     remainingTime = stringResource(id = R.string.not_started)
                                 )
                             }
@@ -181,16 +219,16 @@ fun MapRotationPage(
                                     },
                                     mapName = maps.current.map,
                                     modeName = "Rank",
-                                    startTime = maps.current.readableDate_start,
-                                    endTime = maps.current.readableDate_end,
+                                    startTime = adjustDate(maps.current.readableDate_start),
+                                    endTime = adjustDate(maps.current.readableDate_end),
                                     remainingTime = uiState.rankCountDownTime
                                 )
                             } else {
                                 MapCard(
                                     mapName = maps.next.map,
                                     modeName = "Rank",
-                                    startTime = maps.next.readableDate_start,
-                                    endTime = maps.next.readableDate_end,
+                                    startTime = adjustDate(maps.next.readableDate_start),
+                                    endTime = adjustDate(maps.next.readableDate_end),
                                     remainingTime = stringResource(id = R.string.not_started)
                                 )
                             }
@@ -227,16 +265,16 @@ fun MapRotationPage(
                                     },
                                     mapName = maps.current.map,
                                     modeName = maps.current.eventName,
-                                    startTime = maps.current.readableDate_start,
-                                    endTime = maps.current.readableDate_end,
+                                    startTime = adjustDate(maps.current.readableDate_start),
+                                    endTime = adjustDate(maps.current.readableDate_end),
                                     remainingTime = uiState.mixTapeCountDownTime
                                 )
                             } else {
                                 MapCard(
                                     mapName = maps.next.map,
                                     modeName = maps.next.eventName,
-                                    startTime = maps.next.readableDate_start,
-                                    endTime = maps.next.readableDate_end,
+                                    startTime = adjustDate(maps.next.readableDate_start),
+                                    endTime = adjustDate(maps.next.readableDate_end),
                                     remainingTime = stringResource(id = R.string.not_started)
                                 )
                             }
@@ -246,4 +284,8 @@ fun MapRotationPage(
             }
         }
     )
+}
+
+private fun adjustDate(date: String) = if (date == "00:00:00") date else with(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) {
+    LocalDateTime.parse(date, this).plusHours(8).format(this)
 }
