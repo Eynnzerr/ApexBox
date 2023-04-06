@@ -6,9 +6,9 @@ Android helper for Apex Legends game.
 - [x] Browse latest news of the game from offical site.
 - [x] Check everyday crafting items.
 - [x] Look up statistics of players.
-- [] Listen and download music packs.
-- [] Check data of each weapons.
-- [] Subscribe rank score changes of players.
+- [ ] Listen and download music packs.
+- [ ] Check data of each weapons.
+- [ ] Subscribe rank score changes of players.
 
 ### ScreenShots
 <div align="center">
