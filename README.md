@@ -1,5 +1,5 @@
 # ApexBox
-Android helper for Apex Legends game.
+Android helper for Apex Legends game. Inspired by [Apex BWiki](https://wiki.biligame.com/apex/%E9%A6%96%E9%A1%B5).
 
 ### Features
 - [x] Look up and subscribe map roation of BR mode.
