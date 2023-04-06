@@ -18,10 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.navigation.NavHostController
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.eynnzerr.apexbox.R
 import com.eynnzerr.apexbox.ui.component.*
 import com.eynnzerr.apexbox.ui.ext.mapNames
@@ -70,6 +67,11 @@ fun MapRotationPage(
                             .build()
                         enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
                             .setInputData(data)
+                            .setConstraints(
+                                Constraints.Builder()
+                                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                                    .build()
+                            )
                             .build()
                         )
                     }

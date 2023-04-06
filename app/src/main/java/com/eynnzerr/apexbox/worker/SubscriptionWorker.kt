@@ -42,6 +42,11 @@ class SubscriptionWorker @AssistedInject constructor(
                             enqueue(
                                 OneTimeWorkRequestBuilder<SubscriptionWorker>()
                                 .setInputData(data)
+                                .setConstraints(
+                                    Constraints.Builder()
+                                        .setRequiredNetworkType(NetworkType.CONNECTED)
+                                        .build()
+                                )
                                 .setInitialDelay(mapRotation.battle_royale.current.remainingSecs.toLong(), TimeUnit.SECONDS)
                                 .build()
                             )

@@ -1,5 +1,6 @@
 package com.eynnzerr.apexbox.data.source
 
+import com.eynnzerr.apexbox.data.model.bean.CraftItem
 import com.eynnzerr.apexbox.data.model.bean.MapRotation
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -11,6 +12,9 @@ interface RemoteDataSource {
 
     @GET(Api.MAP_ROTATION)
     suspend fun getMapRotation(@Query("auth") key: String, @Query("version") version: Int = 2): Response<MapRotation>
+
+    @GET(Api.CRAFT_LIST)
+    suspend fun getCraftList(@Query("auth") key: String): Response<List<CraftItem>>
 
     companion object {
         val instance: RemoteDataSource by lazy {

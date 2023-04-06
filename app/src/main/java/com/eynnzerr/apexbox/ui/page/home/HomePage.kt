@@ -83,7 +83,7 @@ fun HomePage(
                             )
                         },
                     ) {
-                        // TODO Go to CraftListPage.
+                        navHostController.pushTo(Destinations.CRAFT_ROUTE)
                     }
                 }
                 item {

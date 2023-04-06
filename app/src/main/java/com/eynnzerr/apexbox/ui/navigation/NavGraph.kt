@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import com.eynnzerr.apexbox.ui.page.GlobalViewModel
+import com.eynnzerr.apexbox.ui.page.craft.CraftListPage
+import com.eynnzerr.apexbox.ui.page.craft.CraftListViewModel
 import com.eynnzerr.apexbox.ui.page.help.HelpPage
 import com.eynnzerr.apexbox.ui.page.home.HomePage
 import com.eynnzerr.apexbox.ui.page.maprotation.MapRotationPage
@@ -40,7 +42,8 @@ fun NavGraph(
             MapRotationPage(navHostController, viewModel)
         }
         animatedComposable(Destinations.CRAFT_ROUTE) {
-            // TODO
+            val viewModel = hiltViewModel<CraftListViewModel>()
+            CraftListPage(navHostController, viewModel)
         }
         animatedComposable(Destinations.PLAYER_ROUTE) {
             // TODO

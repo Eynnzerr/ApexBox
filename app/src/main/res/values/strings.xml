@@ -46,6 +46,14 @@
     <string name="subscription_desc">Only BR mode is supported for now.</string>
     <string name="subscription_manage">Manage map subscriptions</string>
 
+    <!--  CraftListPage  -->
+    <string name="craft_bar_title">Craft List</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="seasonly">Seasonly</string>
+    <string name="permanently">Permanently</string>
+    <string name="cost">cost:</string>
+
     <!--  SettingPage  -->
     <string name="setting_bar_title">Settings</string>
     <string name="item_api_key">API Key</string>

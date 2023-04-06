@@ -1,6 +1,8 @@
 package com.eynnzerr.apexbox.ui.component
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,7 +42,7 @@ fun TitleText(
         style = MaterialTheme.typography.titleMedium.copy(
             baselineShift = BaselineShift.Superscript
         ),
-        color = MaterialTheme.colorScheme.onSurface,
+        color = MaterialTheme.colorScheme.primary,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
     )
@@ -60,5 +62,21 @@ fun MapInfoText(
         color = Color.White,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
+    )
+}
+
+@Composable
+fun Subtitle(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.primary,
+) {
+    Text(
+        text = text,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        color = color,
+        style = MaterialTheme.typography.labelLarge
     )
 }
