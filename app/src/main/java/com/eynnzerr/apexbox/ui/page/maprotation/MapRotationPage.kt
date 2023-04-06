@@ -68,25 +68,25 @@ fun MapRotationPage(
                         val data = Data.Builder()
                             .putStringArray("subscribed_maps", subscribedMaps)
                             .build()
-//                        enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
-//                            .setInputData(data)
-//                            .setConstraints(
-//                                Constraints.Builder()
-//                                    .setRequiredNetworkType(NetworkType.CONNECTED)
-//                                    .build()
-//                            )
-//                            .build()
-//                        )
-                        enqueue(PeriodicWorkRequestBuilder<PeriodicSubscriptionWorker>(30, TimeUnit.MINUTES)
+                        enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
                             .setInputData(data)
                             .setConstraints(
                                 Constraints.Builder()
                                     .setRequiredNetworkType(NetworkType.CONNECTED)
                                     .build()
                             )
-                            .setInitialDelay(convertTimeToSeconds(uiState.commonCountDownTime), TimeUnit.SECONDS)
                             .build()
                         )
+//                        enqueue(PeriodicWorkRequestBuilder<PeriodicSubscriptionWorker>(30, TimeUnit.MINUTES)
+//                            .setInputData(data)
+//                            .setConstraints(
+//                                Constraints.Builder()
+//                                    .setRequiredNetworkType(NetworkType.CONNECTED)
+//                                    .build()
+//                            )
+//                            .setInitialDelay(convertTimeToSeconds(uiState.commonCountDownTime), TimeUnit.SECONDS)
+//                            .build()
+//                        )
                     }
                 }
             ) {

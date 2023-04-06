@@ -1,5 +1,6 @@
 package com.eynnzerr.apexbox.ui.page.settings
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -29,6 +31,8 @@ import com.eynnzerr.apexbox.ui.page.GlobalViewModel
 fun SettingsPage(
     navHostController: NavHostController,
 ) {
+    val context = LocalContext.current
+
     ApexScaffold(
         title = { Text(text = stringResource(id = R.string.setting_bar_title)) },
         navigationIcon = {
@@ -63,6 +67,7 @@ fun SettingsPage(
                         icon = Icons.Outlined.AccountCircle
                     ) {
                         // TODO navigate to API Key page
+                        Toast.makeText(context, "This function will be ready very soon.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 item {
@@ -72,6 +77,7 @@ fun SettingsPage(
                         icon = Icons.Outlined.VideogameAsset
                     ) {
                         // TODO navigate to player subscription
+                        Toast.makeText(context, "This function will be ready very soon.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 item {
@@ -81,6 +87,7 @@ fun SettingsPage(
                         icon = Icons.Outlined.Palette
                     ) {
                         // TODO navigate to appearance settings
+                        Toast.makeText(context, "This function will be ready very soon.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 item {
@@ -90,6 +97,7 @@ fun SettingsPage(
                         icon = Icons.Outlined.Language
                     ) {
                         // TODO navigate to language settings
+                        Toast.makeText(context, "This function will be ready very soon.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 item {
@@ -99,6 +107,7 @@ fun SettingsPage(
                         icon = Icons.Outlined.TipsAndUpdates
                     ) {
                         // TODO navigate to about page
+                        navHostController.pushTo(Destinations.ABOUT_ROUTE)
                     }
                 }
             }

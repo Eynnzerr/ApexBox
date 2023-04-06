@@ -11,7 +11,8 @@ class AppRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: NewsDao
 ) {
-    private val apiKey = MMKVAgent.decodeString(PreferenceKeys.API_KEY)
+    // TODO 没有考虑用户在进入应用后更换API_KEY的行为，会导致出错
+    val apiKey = MMKVAgent.decodeString(PreferenceKeys.API_KEY)
 
     suspend fun getMapRotation() = remoteDataSource.getMapRotation(apiKey)
 
@@ -23,4 +24,6 @@ class AppRepository @Inject constructor(
     fun getCachedNewsFlow() = localDataSource.getCachedNews()
 
     suspend fun insertNews(vararg news: ApexNews) = localDataSource.insertNews(*news)
+
+    suspend fun getPlayerStats(player: String, platform: String) = remoteDataSource.getPlayerStats(apiKey, player, platform)
 }

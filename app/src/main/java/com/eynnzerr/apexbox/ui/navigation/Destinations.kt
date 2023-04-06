@@ -8,4 +8,5 @@ object Destinations {
     const val PLAYER_ROUTE = "/player_info"
     const val SETTINGS_ROUTE = "/settings"
     const val NEWS_ROUTE = "/news"
+    const val ABOUT_ROUTE = "/about"
 }

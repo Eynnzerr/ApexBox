@@ -17,7 +17,10 @@ import com.eynnzerr.apexbox.ui.page.maprotation.MapRotationPage
 import com.eynnzerr.apexbox.ui.page.maprotation.MapRotationViewModel
 import com.eynnzerr.apexbox.ui.page.news.NewsPage
 import com.eynnzerr.apexbox.ui.page.news.NewsViewModel
+import com.eynnzerr.apexbox.ui.page.player.PlayerPage
+import com.eynnzerr.apexbox.ui.page.player.PlayerViewModel
 import com.eynnzerr.apexbox.ui.page.settings.SettingsPage
+import com.eynnzerr.apexbox.ui.page.settings.about.AboutPage
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -48,7 +51,8 @@ fun NavGraph(
             CraftListPage(navHostController, viewModel)
         }
         animatedComposable(Destinations.PLAYER_ROUTE) {
-            // TODO
+            val viewModel = hiltViewModel<PlayerViewModel>()
+            PlayerPage(navHostController, viewModel)
         }
         animatedComposable(Destinations.NEWS_ROUTE) {
             val viewModel = hiltViewModel<NewsViewModel>()
@@ -56,6 +60,9 @@ fun NavGraph(
         }
         animatedComposable(Destinations.SETTINGS_ROUTE) {
             SettingsPage(navHostController)
+        }
+        animatedComposable(Destinations.ABOUT_ROUTE) {
+            AboutPage(navHostController)
         }
     }
 }

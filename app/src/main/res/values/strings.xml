@@ -59,6 +59,29 @@
     <string name="news_bar_title">News</string>
     <string name="news_toast_refreshed">Get latest news successfully.</string>
 
+    <!--  PlayerPage  -->
+    <string name="player_bar_title">Player Statistics</string>
+    <string name="username">Username</string>
+    <string name="platform">Platform</string>
+    <string name="search">search</string>
+    <string name="loding_player">querying player data..</string>
+    <string name="cancel">cancel</string>
+    <string name="basic_info">Basic Info</string>
+    <string name="rank_info">Rank</string>
+    <string name="status_info">Status</string>
+    <string name="legend_info">Legend</string>
+    <string name="name">name:</string>
+    <string name="uid">uid:</string>
+    <string name="level">level:</string>
+    <string name="to_next_level">to next level:</string>
+    <string name="rank_name">rank:</string>
+    <string name="score">score:</string>
+    <string name="season">season:</string>
+    <string name="position">ladder position:</string>
+    <string name="account_status">account status:</string>
+    <string name="playing_legend">playing legend:</string>
+    <string name="toast_loaded">Query player statistics successfully.</string>
+
     <!--  SettingPage  -->
     <string name="setting_bar_title">Settings</string>
     <string name="item_api_key">API Key</string>
@@ -71,5 +94,15 @@
     <string name="item_languages_desc">English, Chinese, etc.</string>
     <string name="item_about">About</string>
     <string name="item_about_desc">author, open source</string>
+
+    <!--  AboutPage  -->
+    <string name="about_bar_title">About</string>
+    <string name="version">Version</string>
+    <string name="author">Author</string>
+    <string name="github">Github</string>
+    <string name="libraries">Libraries</string>
+    <string name="github_url">https://github.com/Eynnzerr</string>
+    <string name="libraries_description">View used open source libraries</string>
+    <string name="author_name">Eynnzerr(blog: eynnzerr.top)</string>
 
 </resources>

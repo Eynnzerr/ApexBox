@@ -100,7 +100,7 @@ fun HomePage(
                             )
                         },
                     ) {
-                        // TODO Go to CraftListPage.
+                        navHostController.pushTo(Destinations.PLAYER_ROUTE)
                     }
                 }
             }

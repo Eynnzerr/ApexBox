@@ -1,12 +1,15 @@
 package com.eynnzerr.apexbox.worker
 
+import android.app.Notification
 import android.content.Context
 import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
+import com.eynnzerr.apexbox.R
 import com.eynnzerr.apexbox.data.repository.AppRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlin.random.Random
 
 @HiltWorker
 class PeriodicSubscriptionWorker @AssistedInject constructor(
@@ -37,7 +40,18 @@ class PeriodicSubscriptionWorker @AssistedInject constructor(
         return Result.success()
     }
 
-
+    private suspend fun setForeGroundService() {
+        setForeground(
+            ForegroundInfo(
+                Random.nextInt(),
+                Notification.Builder(context, "subscription_channel")
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentTitle("Apex Box Service")
+                    .setContentText("Map rotation subscription is running...")
+                    .build()
+            )
+        )
+    }
 }
 
 private const val TAG = "PeriodicSubscriptionWor"

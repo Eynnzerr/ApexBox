@@ -3,6 +3,7 @@ package com.eynnzerr.apexbox.data.source.remote
 import com.eynnzerr.apexbox.data.model.bean.ApexNews
 import com.eynnzerr.apexbox.data.model.bean.CraftItem
 import com.eynnzerr.apexbox.data.model.bean.MapRotation
+import com.eynnzerr.apexbox.data.model.bean.PlayerStats
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,6 +20,13 @@ interface RemoteDataSource {
 
     @GET(Api.NEWS)
     suspend fun getNews(@Query("auth") key: String): Response<List<ApexNews>>
+
+    @GET(Api.PLAYER_STATS)
+    suspend fun getPlayerStats(
+        @Query("auth") key: String,
+        @Query("player") player: String,
+        @Query("platform") platform: String
+    ): Response<PlayerStats>
 
     companion object {
         val instance: RemoteDataSource by lazy {

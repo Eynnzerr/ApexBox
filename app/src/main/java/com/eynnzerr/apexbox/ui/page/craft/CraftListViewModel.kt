@@ -31,7 +31,9 @@ class CraftListViewModel @Inject constructor(
     val craftUiState = _craftUiState.asStateFlow()
 
     init {
-        fetchNewCrafts()
+        if (_craftUiState.value.craftList.isEmpty()) {
+            fetchNewCrafts()
+        }
     }
 
     fun fetchNewCrafts() {

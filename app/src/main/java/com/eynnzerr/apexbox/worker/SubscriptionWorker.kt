@@ -20,7 +20,7 @@ class SubscriptionWorker @AssistedInject constructor(
 ): CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
-        // setForeGroundService()
+        Log.d(TAG, "doWork: a worker starts working")
         runCatching{
             repository.getMapRotation()
         }.onSuccess { response ->
@@ -41,6 +41,7 @@ class SubscriptionWorker @AssistedInject constructor(
                                 OneTimeWorkRequestBuilder<SubscriptionWorker>()
                                 .setInputData(data)
                                 .setInitialDelay(mapRotation.battle_royale.current.remainingSecs.toLong(), TimeUnit.SECONDS)
+                                // .setInitialDelay(10, TimeUnit.SECONDS)
                                 .setConstraints(
                                     Constraints.Builder()
                                         .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -58,19 +59,6 @@ class SubscriptionWorker @AssistedInject constructor(
             return Result.failure()
         }
         return Result.success()
-    }
-
-    private suspend fun setForeGroundService() {
-        setForeground(
-            ForegroundInfo(
-                Random.nextInt(),
-                Notification.Builder(context, "subscription_channel")
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setContentTitle("Apex Box Service")
-                    .setContentText("Map rotation subscription is running...")
-                    .build()
-            )
-        )
     }
 }
 

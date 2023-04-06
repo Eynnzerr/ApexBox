@@ -38,7 +38,9 @@ class MapRotationViewModel @Inject constructor(
     val mapUiState = _mapUiState.asStateFlow()
 
     init {
-        fetchMapRotation()
+        if (_mapUiState.value.success == -3) {
+            fetchMapRotation()
+        }
     }
 
     fun updateMapSubscriptions(index: Int, selected: Boolean) {
