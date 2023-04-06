@@ -53,78 +53,82 @@ fun CraftListPage(
             }
         },
         content = {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-            ) {
-                item {
-                    TitleText(
-                        modifier = Modifier.padding(start = 10.dp),
-                        text = stringResource(id = R.string.daily)
-                    )
-                }
-                item {
-                    LazyRow {
-                        uiState.craftList
-                            .filter { it.bundleType == CraftItem.TYPE_DAILY}
-                            .map { it.bundleContent }
-                            .forEach {
-                                items(it) { bundle ->
-                                    CraftListItem(
-                                        bundle,
-                                        modifier = Modifier.padding(horizontal = 10.dp)
-                                    ) {
-
-                                    }
-                                }
-                            }
+            if (uiState.craftList.isEmpty()) {
+                CraftPlaceHolder()
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                ) {
+                    item {
+                        TitleText(
+                            modifier = Modifier.padding(start = 10.dp),
+                            text = stringResource(id = R.string.daily)
+                        )
                     }
-                }
-                item {
-                    TitleText(
-                        modifier = Modifier.padding(start = 10.dp, top = 20.dp),
-                        text = stringResource(id = R.string.weekly)
-                    )
-                }
-                item {
-                    LazyRow {
-                        uiState.craftList
-                            .filter { it.bundleType == CraftItem.TYPE_WEEKLY}
-                            .map { it.bundleContent }
-                            .forEach {
-                                items(it) { bundle ->
-                                    CraftListItem(
-                                        bundle,
-                                        modifier = Modifier.padding(horizontal = 10.dp)
-                                    ) {
+                    item {
+                        LazyRow {
+                            uiState.craftList
+                                .filter { it.bundleType == CraftItem.TYPE_DAILY}
+                                .map { it.bundleContent }
+                                .forEach {
+                                    items(it) { bundle ->
+                                        CraftListItem(
+                                            bundle,
+                                            modifier = Modifier.padding(horizontal = 10.dp)
+                                        ) {
 
+                                        }
                                     }
                                 }
-                            }
+                        }
                     }
-                }
-                item {
-                    TitleText(
-                        modifier = Modifier.padding(start = 10.dp, top = 20.dp),
-                        text = stringResource(id = R.string.permanently)
-                    )
-                }
-                item {
-                    LazyRow {
-                        uiState.craftList
-                            .filter { it.bundleType == CraftItem.TYPE_PERMANENTLY}
-                            .map { it.bundleContent }
-                            .forEach {
-                                items(it) { bundle ->
-                                    CraftListItem(
-                                        bundle,
-                                        modifier = Modifier.padding(horizontal = 10.dp)
-                                    ) {
+                    item {
+                        TitleText(
+                            modifier = Modifier.padding(start = 10.dp, top = 20.dp),
+                            text = stringResource(id = R.string.weekly)
+                        )
+                    }
+                    item {
+                        LazyRow {
+                            uiState.craftList
+                                .filter { it.bundleType == CraftItem.TYPE_WEEKLY}
+                                .map { it.bundleContent }
+                                .forEach {
+                                    items(it) { bundle ->
+                                        CraftListItem(
+                                            bundle,
+                                            modifier = Modifier.padding(horizontal = 10.dp)
+                                        ) {
 
+                                        }
                                     }
                                 }
-                            }
+                        }
+                    }
+                    item {
+                        TitleText(
+                            modifier = Modifier.padding(start = 10.dp, top = 20.dp),
+                            text = stringResource(id = R.string.permanently)
+                        )
+                    }
+                    item {
+                        LazyRow {
+                            uiState.craftList
+                                .filter { it.bundleType == CraftItem.TYPE_PERMANENTLY}
+                                .map { it.bundleContent }
+                                .forEach {
+                                    items(it) { bundle ->
+                                        CraftListItem(
+                                            bundle,
+                                            modifier = Modifier.padding(horizontal = 10.dp)
+                                        ) {
+
+                                        }
+                                    }
+                                }
+                        }
                     }
                 }
             }

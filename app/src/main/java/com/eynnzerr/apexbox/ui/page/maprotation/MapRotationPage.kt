@@ -22,9 +22,12 @@ import androidx.work.*
 import com.eynnzerr.apexbox.R
 import com.eynnzerr.apexbox.ui.component.*
 import com.eynnzerr.apexbox.ui.ext.mapNames
+import com.eynnzerr.apexbox.worker.PeriodicSubscriptionWorker
 import com.eynnzerr.apexbox.worker.SubscriptionWorker
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.TimeUnit
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -65,13 +68,23 @@ fun MapRotationPage(
                         val data = Data.Builder()
                             .putStringArray("subscribed_maps", subscribedMaps)
                             .build()
-                        enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
+//                        enqueue(OneTimeWorkRequestBuilder<SubscriptionWorker>()
+//                            .setInputData(data)
+//                            .setConstraints(
+//                                Constraints.Builder()
+//                                    .setRequiredNetworkType(NetworkType.CONNECTED)
+//                                    .build()
+//                            )
+//                            .build()
+//                        )
+                        enqueue(PeriodicWorkRequestBuilder<PeriodicSubscriptionWorker>(30, TimeUnit.MINUTES)
                             .setInputData(data)
                             .setConstraints(
                                 Constraints.Builder()
                                     .setRequiredNetworkType(NetworkType.CONNECTED)
                                     .build()
                             )
+                            .setInitialDelay(convertTimeToSeconds(uiState.commonCountDownTime), TimeUnit.SECONDS)
                             .build()
                         )
                     }
@@ -96,7 +109,7 @@ fun MapRotationPage(
         },
         actions = {
             IconButton(onClick = {
-                mapRotationViewModel.fetchMapRotation()
+                mapRotationViewModel.updateMapRotation()
             }) {
                 Icon(
                     imageVector = Icons.Outlined.Refresh,
@@ -212,7 +225,6 @@ fun MapRotationPage(
                                                     .currentPageOffsetFraction
                                                 ).absoluteValue
 
-                                        // We animate the alpha, between 50% and 100%
                                         alpha = lerp(
                                             start = 0.5f,
                                             stop = 1f,
@@ -290,4 +302,12 @@ fun MapRotationPage(
 
 private fun adjustDate(date: String) = if (date == "00:00:00") date else with(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) {
     LocalDateTime.parse(date, this).plusHours(8).format(this)
+}
+
+private fun convertTimeToSeconds(timeString: String): Long {
+    val time = LocalTime.parse(timeString)
+    val hours = time.hour
+    val minutes = time.minute
+    val seconds = time.second
+    return (hours * 3600 + minutes * 60 + seconds).toLong()
 }

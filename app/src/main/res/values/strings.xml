@@ -53,6 +53,11 @@
     <string name="seasonly">Seasonly</string>
     <string name="permanently">Permanently</string>
     <string name="cost">cost:</string>
+    <string name="loading">loading..</string>
+
+    <!--  NewsPage  -->
+    <string name="news_bar_title">News</string>
+    <string name="news_toast_refreshed">Get latest news successfully.</string>
 
     <!--  SettingPage  -->
     <string name="setting_bar_title">Settings</string>

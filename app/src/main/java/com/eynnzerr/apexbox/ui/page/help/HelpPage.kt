@@ -23,6 +23,7 @@ import com.eynnzerr.apexbox.ui.component.ApexScaffold
 import com.eynnzerr.apexbox.ui.component.DisplayText
 import com.eynnzerr.apexbox.ui.ext.popupTo
 import com.eynnzerr.apexbox.ui.ext.pushTo
+import com.eynnzerr.apexbox.ui.ext.startBrowser
 import com.eynnzerr.apexbox.ui.navigation.Destinations
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -147,8 +148,3 @@ fun HelpPage(
     )
 }
 
-private fun startBrowser(url: String, context: Context) {
-    val uri = Uri.parse(url)
-    val intent = Intent(Intent.ACTION_VIEW, uri)
-    context.startActivity(intent)
-}

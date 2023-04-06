@@ -1,7 +1,6 @@
 package com.eynnzerr.apexbox.worker
 
 import android.app.Notification
-import android.app.NotificationManager
 import android.content.Context
 import android.util.Log
 import androidx.hilt.work.HiltWorker
@@ -11,7 +10,6 @@ import com.eynnzerr.apexbox.data.repository.AppRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 import kotlin.random.Random
 
 @HiltWorker
@@ -22,7 +20,7 @@ class SubscriptionWorker @AssistedInject constructor(
 ): CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
-        Log.d(TAG, "doWork: worker scheduled and doing job.")
+        // setForeGroundService()
         runCatching{
             repository.getMapRotation()
         }.onSuccess { response ->
@@ -42,16 +40,17 @@ class SubscriptionWorker @AssistedInject constructor(
                             enqueue(
                                 OneTimeWorkRequestBuilder<SubscriptionWorker>()
                                 .setInputData(data)
+                                .setInitialDelay(mapRotation.battle_royale.current.remainingSecs.toLong(), TimeUnit.SECONDS)
                                 .setConstraints(
                                     Constraints.Builder()
                                         .setRequiredNetworkType(NetworkType.CONNECTED)
                                         .build()
                                 )
-                                .setInitialDelay(mapRotation.battle_royale.current.remainingSecs.toLong(), TimeUnit.SECONDS)
                                 .build()
                             )
                         }
                     }
+                    Log.d(TAG, "a worker has finished and scheduled next work after ${mapRotation.battle_royale.current.remainingSecs} seconds.")
                 }
             }
         }.onFailure { exception ->
@@ -61,14 +60,17 @@ class SubscriptionWorker @AssistedInject constructor(
         return Result.success()
     }
 
-    private fun sendNotification(title: String, content: String) {
-        val notificationManager = context.getSystemService(NotificationManager::class.java)
-        val notification = Notification.Builder(context, "subscription_channel")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(title)
-            .setContentText(content)
-            .build()
-        notificationManager.notify(Random.nextInt(), notification)
+    private suspend fun setForeGroundService() {
+        setForeground(
+            ForegroundInfo(
+                Random.nextInt(),
+                Notification.Builder(context, "subscription_channel")
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentTitle("Apex Box Service")
+                    .setContentText("Map rotation subscription is running...")
+                    .build()
+            )
+        )
     }
 }
 

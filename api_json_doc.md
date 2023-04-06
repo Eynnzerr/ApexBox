@@ -362,3 +362,512 @@ response:
     }
 ]       
 ```
+
+### 查找玩家信息
+
+response:
+```json
+{
+    "global": {
+        "name": "",
+        "uid": 1007993482882,
+        "avatar": "",
+        "platform": "PC",
+        "level": 158,
+        "toNextLevelPercent": 88,
+        "internalUpdateCount": 2634,
+        "bans": {
+            "isActive": false,
+            "remainingSeconds": 0,
+            "last_banReason": "COMPETITIVE_DODGE_COOLDOWN"
+        },
+        "rank": {
+            "rankScore": 0,
+            "rankName": "Unranked",
+            "rankDiv": 0,
+            "ladderPosPlatform": -1,
+            "rankImg": "https:\/\/api.mozambiquehe.re\/assets\/ranks\/unranked4.png",
+            "rankedSeason": "season16_split_2"
+        },
+        "arena": {
+            "rankScore": 0,
+            "rankName": "Unranked",
+            "rankDiv": 0,
+            "ladderPosPlatform": -1,
+            "rankImg": "https:\/\/api.mozambiquehe.re\/assets\/ranks\/unranked4.png",
+            "rankedSeason": "arenas16_split_2"
+        },
+        "battlepass": {
+            "level": "-1",
+            "history": {
+                "season1": -1,
+                "season2": -1,
+                "season3": -1,
+                "season4": -1,
+                "season5": -1,
+                "season6": -1,
+                "season7": -1,
+                "season8": -1,
+                "season9": -1,
+                "season10": -1,
+                "season11": 1,
+                "season12": -1,
+                "season13": -1,
+                "season14": -1
+            }
+        },
+        "internalParsingVersion": 2,
+        "badges": [
+            {
+                "name": "Stop Asian Hate",
+                "value": 0
+            },
+            {
+                "name": "Pride",
+                "value": 0
+            },
+            {
+                "name": "Black Lives Matter",
+                "value": 0
+            }
+        ],
+        "levelPrestige": 0
+    },
+    "realtime": {
+        "lobbyState": "open",
+        "isOnline": 0,
+        "isInGame": 0,
+        "canJoin": 0,
+        "partyFull": 0,
+        "selectedLegend": "Bloodhound",
+        "currentState": "offline",
+        "currentStateSinceTimestamp": -1,
+        "currentStateAsText": "Offline"
+    },
+    "legends": {
+        "selected": {
+            "LegendName": "Bloodhound",
+            "data": [
+                {
+                    "name": "BR Kills",
+                    "value": 523,
+                    "key": "kills",
+                    "global": false
+                },
+                {
+                    "name": "Scout of Action",
+                    "value": 110,
+                    "key": "scout_of_action_targets_hit",
+                    "global": true
+                },
+                {
+                    "name": "BR Damage",
+                    "value": 189254,
+                    "key": "damage",
+                    "global": false
+                }
+            ],
+            "gameInfo": {
+                "skin": "Night Raver",
+                "skinRarity": "Epic",
+                "frame": "Summer Slasher",
+                "frameRarity": "Epic",
+                "pose": "On Target",
+                "poseRarity": "Epic",
+                "intro": "The hunter the gods have sent",
+                "introRarity": "Rare",
+                "badges": [
+                    {
+                        "name": "Apex Predator",
+                        "value": 0,
+                        "category": "Bloodhound"
+                    },
+                    {
+                        "name": "Assassin",
+                        "value": 3,
+                        "category": "Bloodhound"
+                    },
+                    {
+                        "name": "Squad Wipe",
+                        "value": 0,
+                        "category": "Bloodhound"
+                    }
+                ]
+            },
+            "ImgAssets": {
+                "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/bloodhound.png",
+                "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/bloodhound.jpg"
+            }
+        },
+        "all": {
+            "Global": {
+                "data": [
+                    {
+                        "name": "Scout of Action",
+                        "value": 110,
+                        "key": "scout_of_action_targets_hit",
+                        "rank": {
+                            "rankPos": 49459,
+                            "topPercent": 6.81
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 35248,
+                            "topPercent": 9.89
+                        }
+                    }
+                ],
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/global.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/global.jpg"
+                }
+            },
+            "Revenant": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/revenant.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/revenant.jpg"
+                }
+            },
+            "Crypto": {
+                "data": [
+                    {
+                        "name": "BR Kills",
+                        "value": 0,
+                        "key": "kills",
+                        "rank": {
+                            "rankPos": "NOT_CALCULATED_YET",
+                            "topPercent": "NOT_CALCULATED_YET"
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": "NOT_CALCULATED_YET",
+                            "topPercent": "NOT_CALCULATED_YET"
+                        }
+                    }
+                ],
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/crypto.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/crypto.jpg"
+                }
+            },
+            "Horizon": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/horizon.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/horizon.jpg"
+                }
+            },
+            "Gibraltar": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/gibraltar.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/gibraltar.jpg"
+                }
+            },
+            "Wattson": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/wattson.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/wattson.jpg"
+                }
+            },
+            "Fuse": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/fuse.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/fuse.jpg"
+                }
+            },
+            "Bangalore": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/bangalore.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/bangalore.jpg"
+                }
+            },
+            "Wraith": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/wraith.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/wraith.jpg"
+                }
+            },
+            "Octane": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/octane.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/octane.jpg"
+                }
+            },
+            "Bloodhound": {
+                "data": [
+                    {
+                        "name": "BR Kills",
+                        "value": 523,
+                        "key": "kills",
+                        "rank": {
+                            "rankPos": 908907,
+                            "topPercent": 15.44
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 309232,
+                            "topPercent": 15.33
+                        }
+                    },
+                    {
+                        "name": "BR Damage",
+                        "value": 189254,
+                        "key": "damage",
+                        "rank": {
+                            "rankPos": 690195,
+                            "topPercent": 32.41
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 247391,
+                            "topPercent": 32.83
+                        }
+                    }
+                ],
+                "gameInfo": {
+                    "badges": [
+                        {
+                            "name": "Apex Predator",
+                            "value": 0
+                        },
+                        {
+                            "name": "Assassin",
+                            "value": 0
+                        },
+                        {
+                            "name": "Squad Wipe",
+                            "value": 0
+                        }
+                    ]
+                },
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/bloodhound.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/bloodhound.jpg"
+                }
+            },
+            "Caustic": {
+                "data": [
+                    {
+                        "name": "BR Kills",
+                        "value": 0,
+                        "key": "kills",
+                        "rank": {
+                            "rankPos": "NOT_CALCULATED_YET",
+                            "topPercent": "NOT_CALCULATED_YET"
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": "NOT_CALCULATED_YET",
+                            "topPercent": "NOT_CALCULATED_YET"
+                        }
+                    }
+                ],
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/caustic.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/caustic.jpg"
+                }
+            },
+            "Lifeline": {
+                "gameInfo": {
+                    "badges": [
+                        {
+                            "name": "Squad Wipe",
+                            "value": 0
+                        }
+                    ]
+                },
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/lifeline.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/lifeline.jpg"
+                }
+            },
+            "Pathfinder": {
+                "data": [
+                    {
+                        "name": "Grapple: Travel distance",
+                        "value": 15969,
+                        "key": "grapple_travel_distance",
+                        "rank": {
+                            "rankPos": 648556,
+                            "topPercent": 73.16
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 259475,
+                            "topPercent": 76.88
+                        }
+                    }
+                ],
+                "gameInfo": {
+                    "badges": [
+                        {
+                            "name": "Apex Pathfinder",
+                            "value": 0
+                        }
+                    ]
+                },
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/pathfinder.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/pathfinder.jpg"
+                }
+            },
+            "Loba": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/loba.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/loba.jpg"
+                }
+            },
+            "Mirage": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/mirage.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/mirage.jpg"
+                }
+            },
+            "Rampart": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/rampart.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/rampart.jpg"
+                }
+            },
+            "Valkyrie": {
+                "data": [
+                    {
+                        "name": "BR Kills",
+                        "value": 10,
+                        "key": "kills",
+                        "rank": {
+                            "rankPos": 2836182,
+                            "topPercent": 80.35
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 921955,
+                            "topPercent": 88.87
+                        }
+                    }
+                ],
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/valkyrie.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/valkyrie.jpg"
+                }
+            },
+            "Seer": {
+                "data": [
+                    {
+                        "name": "BR Kills",
+                        "value": 325,
+                        "key": "kills",
+                        "rank": {
+                            "rankPos": 199988,
+                            "topPercent": 8.64
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 92396,
+                            "topPercent": 11.65
+                        }
+                    },
+                    {
+                        "name": "BR Damage",
+                        "value": 109035,
+                        "key": "specialEvent_damage",
+                        "rank": {
+                            "rankPos": 161451,
+                            "topPercent": 17.79
+                        },
+                        "rankPlatformSpecific": {
+                            "rankPos": 78601,
+                            "topPercent": 22.46
+                        }
+                    }
+                ],
+                "gameInfo": {
+                    "badges": [
+                        {
+                            "name": "Apex Predator",
+                            "value": 0
+                        },
+                        {
+                            "name": "Seer's Wrath",
+                            "value": 0
+                        },
+                        {
+                            "name": "Squad Wipe",
+                            "value": 0
+                        },
+                        {
+                            "name": "Assassin",
+                            "value": 0
+                        }
+                    ]
+                },
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/seer.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/seer.jpg"
+                }
+            },
+            "Ash": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/ash.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/ash.jpg"
+                }
+            },
+            "Mad Maggie": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/mad maggie.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/mad maggie.jpg"
+                }
+            },
+            "Newcastle": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/newcastle.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/newcastle.jpg"
+                }
+            },
+            "Vantage": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/vantage.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/vantage.jpg"
+                }
+            },
+            "Catalyst": {
+                "ImgAssets": {
+                    "icon": "https:\/\/api.mozambiquehe.re\/assets\/icons\/catalyst.png",
+                    "banner": "https:\/\/api.mozambiquehe.re\/assets\/banners\/catalyst.jpg"
+                }
+            }
+        }
+    },
+    "mozambiquehere_internal": {
+        "isNewToDB": false,
+        "claimedBy": "1680620586",
+        "APIAccessType": "BASIC",
+        "ClusterID": "3",
+        "rate_limit": {
+            "max_per_second": 2,
+            "current_req": null
+        },
+        "clusterSrv": "MAIN-CLUSTER-2"
+    },
+    "ALS": {
+        "isALSDataEnabled": false
+    },
+    "total": {
+        "scout_of_action_targets_hit": {
+            "name": "Scout of Action",
+            "value": 110
+        },
+        "kills": {
+            "name": "BR Kills",
+            "value": 858
+        },
+        "damage": {
+            "name": "BR Damage",
+            "value": 189254
+        },
+        "grapple_travel_distance": {
+            "name": "Grapple: Travel distance",
+            "value": 15969
+        },
+        "specialEvent_damage": {
+            "name": "BR Damage",
+            "value": 109035
+        },
+        "kd": {
+            "value": "-1",
+            "name": "KD"
+        }
+    }
+}
+```

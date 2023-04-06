@@ -66,6 +66,10 @@ class MapRotationViewModel @Inject constructor(
 
     fun updateDialogState() = _mapUiState.update { it.copy(openSubscriptionDialog = !it.openSubscriptionDialog) }
 
+    fun updateMapRotation() = updateMapRotation { mapRotation ->
+        _mapUiState.update { it.copy(mapRotation = mapRotation, success = 0) }
+    }
+
     fun fetchMapRotation() = updateMapRotation { mapRotation ->
         _mapUiState.update { it.copy(mapRotation = mapRotation, success = 0) }
 

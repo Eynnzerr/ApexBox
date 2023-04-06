@@ -1,6 +1,6 @@
 package com.eynnzerr.apexbox.data.module
 
-import com.eynnzerr.apexbox.data.source.RemoteDataSource
+import com.eynnzerr.apexbox.data.source.remote.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
